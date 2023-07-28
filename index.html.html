@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GAMERSGALAXY</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Bebas+Neue:regular"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Ysabeau+SC:100,200,300,regular,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
+
+    <style>
+      .playland {
+        width: 50px;
+        color: #fee101;
+        background-color: #2c2b2b;
+        box-shadow: 5px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .swiper {
+        border-radius: 20px;
+      }
+
+      .swiper-slide {
+        background: #fff;
+        display: flex;
+        /* justify-content: center; */
+        align-items: flex-end;
+        margin-top: 30px;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .autoplay-progress {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        z-index: 10;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--swiper-theme-color);
+      }
+
+      .autoplay-progress svg {
+        --progress: 0;
+        position: absolute;
+        left: 0;
+        top: 0px;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        stroke-width: 4px;
+        stroke: var(--swiper-theme-color);
+        fill: none;
+        stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+        stroke-dasharray: 125.6;
+        transform: rotate(-90deg);
+      }
+
+      .myslide {
+        height: 500px;
+        background-size: cover;
+        /* border-radius: 10px; */
+      }
+
+      .slide1 {
+        background-image: url("https://images.alphacoders.com/116/thumb-1920-1168382.jpg");
+        background-position: top;
+        border-radius: 10px;
+      }
+
+      .slide2 {
+        background-image: url("https://insider-gaming.com/wp-content/uploads/2022/12/cyberpunk-2077-game-of-the-year-edition-scaled-e1670012903149.jpg");
+        background-position: center;
+        border-radius: 10px;
+      }
+
+      .slide3 {
+        background-image: url("https://images.alphacoders.com/109/thumb-1920-1097309.png");
+        background-position: center;
+        border-radius: 10px;
+      }
+
+      .slide-title {
+        color: white;
+        font-size: 100px;
+        text-shadow: 3px 3px 5px black;
+        font-family: Bebas Neue;
+      }
+
+      .header-title {
+        color: white;
+        font-size: 50px;
+        text-shadow: 3px 3px 5px black;
+        font-family: Bebas Neue;
+        text-align: center;
+      }
+
+      header {
+        /* height: 60vh; */
+        /* background-color: aquamarine; */
+        padding: 100px 200px;
+        background-image: linear-gradient(0deg, #0000009f, #000000d6),
+          url("https://images4.alphacoders.com/783/783472.jpg");
+        background-size: cover;
+        border-radius: 20px;
+        margin: 10px;
+      }
+
+      .card {
+        background-color: #2c2b2b;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.419);
+        margin-top: 40px;
+        /* padding: 50px; */
+        color: #fff;
+        transition-duration: 300ms;
+        width: 20%;
+        background-size: cover;
+        height: 300px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+
+      .result-card {
+        background-color: #2c2b2b;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.419);
+        margin-top: 40px;
+        padding: 50px;
+        color: #fff;
+        transition-duration: 300ms;
+        background-size: cover;
+      }
+
+      /* .card img{
+      width: 100%;
+    } */
+
+      .card:hover {
+        transform: scale(1.1) rotate(1deg);
+      }
+
+      #search {
+        padding: 10px 20px;
+        display: block;
+        width: 70%;
+        border-radius: 40px;
+        border: none;
+        font-size: 1.1em;
+        /* margin-left: 20%; */
+      }
+
+      .search-btn {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid #ff6e00;
+        background-color: #ff6e00;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        /* margin-top: -20%; */
+        text-align: center;
+        /* margin-left: 55%; */
+        transition-duration: 200ms;
+      }
+
+      .search-btn:hover{
+        background-color: #000;
+        color: #ff6e00;
+      }
+
+      #image {
+        border-radius: 20px;
+      }
+
+      body {
+        background-color: #2c2b2b;
+        margin: 20px 60px;
+      }
+
+      #genre,
+      #title {
+        font-family: Ysabeau SC;
+        color: #fee101;
+      }
+
+      #genre,
+      #description, #released {
+        font-family: Montserrat;
+      }
+
+      /* #gta { */
+      /* width: 300px;
+     border-radius: 20px; */
+
+      /* } */
+
+      #minecraft {
+        width: 260px;
+        border-radius: 20px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        /* align-items: start; */
+        /* }  */
+        /* #valorant{ */
+        /* width: 285px; */
+        /* } */
+        /* #gtacard{ */
+        /* width: 300px ; */
+        /* border-radius: 20px; */
+        /* } */
+      }
+
+      .genre-btn {
+        background-color: black;
+        color: #fee101;
+        font-family: Ysabeau SC;
+        border: 2px solid #fee101;
+        text-align: center;
+        font-size: 1.2em;
+      }
+
+      button {
+        padding: 0.8em 0em;
+        width: 200px;
+        background: #fee101;
+        border-radius: 15px;
+        border: 0;
+        color: #fff;
+        font-size: 1.2em;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 1em 2em;
+        text-transform: uppercase;
+      }
+
+      .light {
+        background: -moz-linear-gradient(
+          -45deg,
+          #fee101 0%,
+          #fee101 40%,
+          #fee101 50%,
+          #fee101 60%,
+          #fee101 100%
+        );
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          color-stop(0%, #fee101),
+          color-stop(40%, #fee101),
+          color-stop(50%, #ffffff),
+          color-stop(60 #fee101),
+          color-stop(100%, #fee101)
+        );
+        background: -webkit-linear-gradient(
+          -45deg,
+          #fee101 0%,
+          #fee101 40%,
+          #ffffff 50%,
+          #fee101 60%,
+          #fee101 100%
+        );
+        background: -o-linear-gradient(
+          -45deg,
+          #fee101 0%,
+          #fee101 40%,
+          #ffffff 50%,
+          #ff6e00 60%,
+          #ff6e00 100%
+        );
+        background: -ms-linear-gradient(
+          -45deg,
+          #ff6e00 0%,
+          #ff6e00 40%,
+          #ffffff 50%,
+          #ff6e00 60%,
+          #ff6e00 100%
+        );
+        background: linear-gradient(
+          135deg,
+          0%,
+          #ff6e00 40%,
+          #ffffff 50%,
+          #ff6e00 60%,
+          #ff6e00 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6e00', endColorstr='#ff6e00', GradientType=1);
+        background-repeat: no-repeat;
+        background-position: 0px;
+        background-size: 300%;
+      }
+
+      .light:hover {
+        animation: light 1s;
+        -webkit-animation: light 1s;
+      }
+
+      @keyframes light {
+        0% {
+          background-position: -600px;
+        }
+
+        100% {
+          background-position: 0px;
+        }
+      }
+
+      @-webkit-keyframes light {
+        0% {
+          background-position: -600px;
+        }
+
+        100% {
+          background-position: 0px;
+        }
+      }
+
+      #genre-result {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .res-card {
+        width: 300px;
+      }
+
+      .playland{
+        font-family: Unbounded;
+        transition-duration: 500ms;
+      }
+
+      .playland:hover{
+        letter-spacing: 5px;
+      }
+
+      .publish-title{
+        color: #01fee9;
+        font-family: Ysabeau SC;
+      }
+
+      .tag{
+        background-color: #fee101;
+        color: black;
+        font-family: Ysabeau SC;
+        border: 2px solid #fee101;
+        text-align: center;
+        /* font-size: 1.1em; */
+        border-radius: 50px;
+        padding: 5px 10px;
+        /* margin: 0; */
+        margin: 5px 10px;
+      }
+
+      #tags{
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .logo-container{
+        display: flex;
+        /* height: 50px; */
+        margin-bottom: 10px;
+        align-items: center;
+      }
+      .logo{
+        height: 50px;
+        margin-right: 20px;
+      }
+
+      #released{
+
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="logo-container">
+      <img class="logo" src="https://mario.wiki.gallery/images/8/8b/SuperMushroom_-_2D_art.svg" />
+      <h1 class="PLAYLAND">PLAYLAND</h1>
+    </div>
+
+    <header>
+      <h1 class="header-title">Search Any Game</h1>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <input id="search" type="text" />
+        <button class="search-btn" onclick="getInputData()">Search</button>
+      </div>
+    </header>
+
+    <div class="result-card" id="result" hidden>
+      <h2>Game Details</h2>
+      <img style="width: 100%" src="" id="image" />
+
+      <div>
+        <h1 id="title"></h1>
+        <h4 id="genre"></h4>
+
+        <h5 style="margin-bottom: 0;">Released On: </h5>
+        <h4 id="released"></h4>
+        <p id="description"></p>
+        <h4>
+          <span class="store-title">Available On : </span>
+          <span id="store"></span>
+        </h4>
+        <div id="tags">
+          
+        </div>
+        <!-- <a href="">
+          <button class="light">Official Website</button>
+        </a> -->
+      </div>
+    </div>
+
+    <div class="result-card" id="not-found" hidden>
+      <h1 class="header-title">Sorry 😔! Game not Found!!</h1>
+      <p
+        style="
+          color: white;
+          text-align: center;
+          font-family: Ysabeau SC;
+          font-size: 30px;
+        "
+      >
+        Please Try Another Game
+      </p>
+    </div>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="myslide swiper-slide slide1">
+          <h1 class="slide-title">Search Any Game</h1>
+        </div>
+        <div class="myslide swiper-slide slide2"></div>
+        <div class="myslide swiper-slide slide3"></div>
+        <div class="myslide swiper-slide slide4">
+          <img
+            id="farcry"
+            src="https://www.heypoorplayer.com/wp-content/uploads/2021/05/far-cry-6.jpeg"
+          />
+        </div>
+        <div class="myslide swiper-slide slide5">
+          <img
+            id="mortal kombat"
+            src="https://images3.alphacoders.com/100/1006970.jpg"
+          />
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="autoplay-progress">
+        <svg viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20"></circle>
+        </svg>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div
+        id="gtacard"
+        class="card"
+        style="
+          background-image: url('https://i.gadgets360cdn.com/products/large/MV5BMTU4MDE3NjItZWY3ZS00NDhkLThhYjYtMjBmM2RmNTFhMmJhXkEyXkFqcGdeQXVyNTQ2MjM5MTg-.-V1-FMjpg-UX1000-1000x1500-1669113853.jpg');
+        "
+      >
+        <button class="genre-btn" onclick="getGenreData('fighting')">
+          fighting
+        </button>
+      </div>
+      <div
+        class="card"
+        style="
+          background-image: url('https://i.etsystatic.com/30589192/r/il/f91e3b/3210940953/il_1140xN.3210940953_jhka.jpg');
+        "
+      >
+        <button class="genre-btn" onclick="getGenreData('adventure')">
+          Adventure
+        </button>
+      </div>
+      <div
+        class="card"
+        style="
+          background-image: url('https://m.media-amazon.com/images/I/81I-Kiv9n8L._AC_UF1000,1000_QL80_.jpg');
+        "
+      >
+        <button class="genre-btn" onclick="getGenreData('action')">
+          Action
+        </button>
+      </div>
+
+      <div
+        class="card"
+        style="
+          background-image: url('https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt6ce962f552812df5/62d6bd83c4f39a1084ff5bef/GettyImages-1409223178.jpg?format=webp');
+        "
+      >
+        <button class="genre-btn" onclick="getGenreData('sports')">
+          sports
+        </button>
+      </div>
+      <div
+        class="card"
+        style="
+          background-image: url('https://image.api.playstation.com/vulcan/ap/rnd/202205/2800/W5uSEsW7yefCNTHatS03v5q7.png');
+        "
+      >
+        <button class="genre-btn" onclick="getGenreData('shooter')">
+          shooter
+        </button>
+      </div>
+    </div>
+
+    <div id="genre-result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script>
+      const progressCircle = document.querySelector(".autoplay-progress svg");
+      const progressContent = document.querySelector(".autoplay-progress span");
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        on: {
+          autoplayTimeLeft(s, time, progress) {
+            progressCircle.style.setProperty("--progress", 1 - progress);
+            progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+          },
+        },
+      });
+    </script>
+
+    <script>
+      const getData = async function (gamename) {
+        let link = `https://api.rawg.io/api/games/${gamename}?key=554f825507fb4e11a368e00b9660bd28`;
+        const res = await fetch(link); // send request to the server
+        // alert(res.status);
+        console.log(res.status);
+        const data = await res.json(); // get data from the response
+        if (res.status === 404 || data.redirect) {
+          document.querySelector("#not-found").removeAttribute("hidden");
+          return;
+        }
+        console.log(data);
+        document.querySelector("#result").hidden = false;
+
+        // displaying data on screen
+        console.log(document);
+        document
+          .querySelector("#image")
+          .setAttribute("src", data.background_image);
+
+        document.querySelector("#title").innerHTML = data.name;
+        document.querySelector("#description").innerHTML = data.description;
+        document.querySelector("#released").innerHTML = data.released;
+        document.querySelector("#genre").innerHTML = data.genres
+          .map((g) => g.name)
+          .join(", ");
+          document.querySelector("#store").innerHTML = data.stores
+          .map((g) => g.store.name)
+          .join(", ");
+        document.querySelector("#tags").innerHTML = data.tags
+          .map((g) => `<p class="tag">${g.name}</p>`)
+          .join(' ');
+        document.querySelector("#link").setAttribute("href", data.website);
+      };
+
+      const getInputData = async function () {
+        const userinput = document.querySelector("#search").value;
+        if (userinput.length > 0) {
+          console.log("input", userinput);
+        }
+        await getData(userinput.split(" ").join("-"));
+      };
+
+      const getGenreData = async (genre) => {
+        let link = `https://api.rawg.io/api/games?genres=${genre}&key=554f825507fb4e11a368e00b9660bd28`;
+        const res = await fetch(link); // send request to the server
+        // alert(res.status);
+        const data = await res.json(); // get data from the response
+        console.log(data);
+        displayData(data.results);
+      };
+
+      const displayData = (data) => {
+        const result = document.querySelector("#genre-result");
+        // data = filterArray(data);
+        console.log(data);
+        result.innerHTML = "";
+        for (let obj of data) {
+          console.log(obj);
+          const div = document.createElement("div");
+          div.classList.add("res-card");
+          div.innerHTML = `
+            <img style="width: 100%" src="${obj.background_image}" id="image" />
+<div>
+  <h1 id="title">${obj.name}</h1>
+</div>`;
+          result.append(div);
+        }
+      };
+    </script>
+  </body>
+</html>
+ 
